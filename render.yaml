@@ -4,6 +4,10 @@ services:
     env: docker
     plan: free
     autoDeploy: true
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
@@ -14,7 +18,7 @@ services:
       - key: N8N_ENCRYPTION_KEY
         value: "b84f92b0138c78f5d1ac9c82ee30a777"
       - key: N8N_HOST
-        value: "n8n-ffmpeg-0jy7.onrender.com"
+        value: "n8n-ffmpeg-xrkt.onrender.com"
       - key: N8N_PROTOCOL
         value: "https"
       - key: N8N_PORT
@@ -23,7 +27,15 @@ services:
         value: "5678"
       - key: DB_TYPE
         value: "sqlite"
-      - key: EXECUTIONS_PROCESS
-        value: "main"
+      - key: DB_SQLITE_POOL_SIZE
+        value: "2"
+      - key: N8N_RUNNERS_ENABLED
+        value: "true"
+      - key: N8N_BLOCK_ENV_ACCESS_IN_NODE
+        value: "false"
+      - key: N8N_GIT_NODE_DISABLE_BARE_REPOS
+        value: "true"
       - key: N8N_PATH
         value: "/home/node/.n8n"
+    buildCommand: ""
+    startCommand: "n8n start"
