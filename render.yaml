@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: n8n
+    name: n8n-ffmpeg
     env: docker
     plan: free
     autoDeploy: true
@@ -8,12 +8,22 @@ services:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        value: admin
+        value: "admin"
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: U7sanems
+        value: "U7sanems"
+      - key: N8N_ENCRYPTION_KEY
+        value: "b84f92b0138c78f5d1ac9c82ee30a777"
       - key: N8N_HOST
-        value: 0.0.0.0
+        value: "n8n-ffmpeg-0jy7.onrender.com"
+      - key: N8N_PROTOCOL
+        value: "https"
       - key: N8N_PORT
-        value: 5678
+        value: "$PORT"
+      - key: PORT
+        value: "5678"
+      - key: DB_TYPE
+        value: "sqlite"
       - key: EXECUTIONS_PROCESS
-        value: main
+        value: "main"
+      - key: N8N_PATH
+        value: "/home/node/.n8n"
